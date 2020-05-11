@@ -1,0 +1,26 @@
+nav {
+  ul {
+    li {
+      display: inline-block;
+      margin-left: 3rem;
+      a {
+        display: block;
+        text-decoration: none;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-weight: 100;
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+
+      }
+    }
+  }
+
+  &.-colorBlack {
+    ul {
+      li {
+        a {color: black;}
+      }
+    }
+  }
+}
