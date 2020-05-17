@@ -4,6 +4,9 @@ import Layout from '../../hoc/Layout/Layout';
 import Link from '../../components/UI/Link/Link'
 
 class Admin extends Component {
+
+  
+
   render() {
     return (
       <Layout currentPathname={this.props.location.pathname}>

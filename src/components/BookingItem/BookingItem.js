@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Button from '../UI/Button/Button';
-
 import './BookingItem.scss';
 
 const BookingItem = props => {
@@ -32,10 +30,9 @@ const BookingItem = props => {
         <span>{props.phone}</span>
       </div>
 
-      <div className="bookingItem__column">
-        <Button label="Accept" class="btn -primary" clicked={props.acceptBooking} />
-        <Button label="Decline" class="btn -primary" clicked={props.declineBooking} />
-      </div>
+      {props.children}
+
+      
     </div>
   );
 };

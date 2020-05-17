@@ -14,18 +14,19 @@ const Input = (props) => {
   switch(props.config.type) {
     case ('select'):
       inputElement = 
-      <select onChange={props.changed}>
+      <select onChange={props.changed} {...props.config} required>
+        <option disabled="disabled" selected>{props.config.placeholder}</option>
         {
           props.config.options.map(option => {
             return (
-              <option value={option.value} key={option.value}>{option.displayValue}</option>
+              <option value={option.value} key={option.value} disabled={option.disabled}>{option.displayValue}</option>
             );
           })
         }
       </select>
     break;
     default: 
-      inputElement = <input {...props.config} onChange={props.changed} value={props.value} />
+      inputElement = <input {...props.config} onChange={props.changed} value={props.value} required />
   }
 
   return (

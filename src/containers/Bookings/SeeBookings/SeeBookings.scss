@@ -1,0 +1,38 @@
+.tabs {
+  .tabs__triggers {
+    text-align: center;
+    display: flex;
+    margin-bottom: 3rem;
+
+    .tab-link {
+      display: inline-flex;
+      justify-content: center;
+      flex: 1;
+      padding: 1rem;
+      cursor: pointer;
+      border: 0;
+  
+      &.tab-link-active {
+        background-color: #d89e47;
+        color: #ffffff;
+      }
+  
+      &:focus {outline: 0}
+    }
+  }
+
+  .tab-content {
+    &#tabpanel-accepted{
+      .bookingItem {
+        .-accept {display: none}
+      }
+    }
+
+    &#tabpanel-declined{
+      .bookingItem {
+        .-decline {display: none}
+      }
+    }
+  }
+}
+

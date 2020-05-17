@@ -7,14 +7,21 @@ import thunk from 'redux-thunk';
 import App from './App';
 import authReducer from './store/reducers/auth';
 import bookingsReducer from './store/reducers/bookings';
+//import bookingsUserSideReducer from './store/reducers/bookingsUserSide';
+import tabsReducer from './store/reducers/tabs';
+import bookingFormReducer from './store/reducers/bookingForm';
 
 import * as serviceWorker from './serviceWorker';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
+
 const rootReducer = combineReducers({
   auth: authReducer,
-  bookings: bookingsReducer
+  bookings: bookingsReducer,
+  //tabs: tabsReducer,
+  //bookingsUserSide: bookingsUserSideReducer,
+  bookingForm: bookingFormReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
