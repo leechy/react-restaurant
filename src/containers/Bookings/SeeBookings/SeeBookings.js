@@ -26,7 +26,7 @@ class SeeBookings extends Component {
 
   render() {
     //@Andrey: To many renders, I guess component is rendered everytime an action is dispatched.
-    //I tried to use shouldComponentUpdate() and indeed the component was rendered only one time but
+    // I tried to use shouldComponentUpdate() and indeed the component was rendered only one time but
     // this.props was not updated and everything was broken
     console.log('ici')
 
@@ -57,37 +57,30 @@ class SeeBookings extends Component {
 
     if(!this.props.loading && !this.props.noDataFoundMessage) {
 
-
-      //@Andrey : Is there a better way or easier way to fetch my bookingsList ? 
-      bookingsList = Object.keys(this.props.bookingsList).map((indexBooking, i) => {
-        return (
-          <>
-            <h1 key={i}>{this.props.bookingsList[indexBooking].date}</h1>
-            {Object.keys(this.props.bookingsList[indexBooking]).map((idBooking, j) => {
-              return (
-                <div key={j}>
-                  <h2>{this.props.bookingsList[indexBooking].id}</h2>
-                  {Object.keys(this.props.bookingsList[indexBooking][idBooking]).map((test, k) => {
-                    return (
-                      <BookingItem 
-                        key={k} 
-                        {...this.props.bookingsList[indexBooking][idBooking]}
-                        >
-                        <div className="bookingItem__column">
-                          {/*<Button label="Accept" class="btn -primary -accept" clicked={() => this.props.onInitUpdateBooking(booking, index, 'accepted')} />
-                          <Button label="Decline" class="btn -primary -decline" clicked={() => this.props.onInitUpdateBooking(booking, index, 'declined')} />*/ }
-                        </div>
-                      </BookingItem>
-                    )
-                  })}
-                </div>
-              )
-            })}
-          </>
-        )
-      })     
-    }
-    else {
+      //@Andrey : Is there a better way or easier way to fetch my bookingsList ?
+      var displayingDate = '';
+      bookingsList = this.props.bookingsList
+        .map((bookingTime, i) => (
+          <div key={i}>
+            { displayingDate !== bookingTime.date &&
+              (displayingDate = bookingTime.date) &&
+              <h1>{bookingTime.date}</h1>
+            }
+            <h2>{bookingTime.date} {bookingTime.id}</h2>
+            { Object.keys(bookingTime)
+                .filter(bookingId => bookingTime[bookingId].status)
+                .map(bookingId => (
+                  <BookingItem key={bookingId} {...bookingTime[bookingId]}>
+                    <div className="bookingItem__column">
+                      {/*<Button label="Accept" class="btn -primary -accept" clicked={() => this.props.onInitUpdateBooking(booking, index, 'accepted')} />
+                      <Button label="Decline" class="btn -primary -decline" clicked={() => this.props.onInitUpdateBooking(booking, index, 'declined')} />*/ }
+                    </div>
+                  </BookingItem>
+                ))
+            }
+          </div>
+        ))
+    } else {
       bookingsList = null;
     }
 
